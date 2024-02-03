@@ -150,6 +150,12 @@ extern layer_state_t layer_state;
 #    include "process_joystick.h"
 #endif
 
+#ifdef SIGNALRGB_SUPPORT_ENABLE
+#    ifndef VIA_ENABLE
+#    include "signalrgb.h"
+#    endif
+#endif
+
 #ifdef PROGRAMMABLE_BUTTON_ENABLE
 #    include "process_programmable_button.h"
 #endif
