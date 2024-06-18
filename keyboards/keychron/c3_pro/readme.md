@@ -1,6 +1,6 @@
-# Keychron C3
+# Keychron C3 Pro
 
-![Keychron C3](https://i.imgur.com/b4FTJsf.jpg)
+![Keychron C3 Pro](https://i.imgur.com/b4FTJsf.jpg)
 
 A customizable 87% keyboard.
 
@@ -10,11 +10,13 @@ A customizable 87% keyboard.
 
 Make example for this keyboard (after setting up your build environment):
 
-    make keychron/c3/ansi/white:default
+    make keychron/c3_pro/ansi/red:default
+    make keychron/c3_pro/ansi/rgb:default 
 
 Flashing example for this keyboard:
 
-    make keychron/c3/ansi/white:default:flash
+    make keychron/c3_pro/ansi/red:default:flash
+    make keychron/c3_pro/ansi/rgb:default:flash
 
 ## bootloader
 

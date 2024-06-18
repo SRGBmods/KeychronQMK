@@ -16,29 +16,31 @@
 
 #pragma once
 
-/* Indication led */
-#define LED_MAC_OS_PIN A4
-#define LED_WIN_OS_PIN A5
+/* Enable indicator LED*/
+#define LED_MAC_OS_PIN A6
+#define LED_WIN_OS_PIN A7
 #define LED_OS_PIN_ON_STATE 1
 
-#ifdef LED_MATRIX_ENABLE
+#ifdef RGB_MATRIX_ENABLE
 /* RGB Matrix Driver Configuration */
-#    define DRIVER_COUNT 1
-#    define DRIVER_ADDR_1 0b1110100
-
-/* RGB Matrix Configuration */
-#    define LED_MATRIX_LED_COUNT (87 + 12)
-
-/* Use first 7 channels of LED driver */
-#    define PHASE_CHANNEL MSKPHASE_7CHANNEL
+#    define DRIVER_COUNT 2
+#    define DRIVER_ADDR_1 0b1110111
+#    define DRIVER_ADDR_2 0b1110100 
 
 /* Set LED driver current */
-#    define CKLED2001_CURRENT_TUNE \
-        { 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50 }
+#define CKLED2001_CURRENT_TUNE \
+    { 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x30 }
+
+/* RGB Matrix Configuration */
+#define RGB_MATRIX_LED_COUNT 99
 
 /* turn off effects when suspended */
-#    define LED_DISABLE_WHEN_USB_SUSPENDED
+#define RGB_DISABLE_WHEN_USB_SUSPENDED
 
-/* Enable Reactive Animation */
-#    define LED_MATRIX_KEYPRESSES
+// RGB Matrix Animation modes. Explicitly enabled
+// For full list of effects, see:
+// https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
+#define RGB_MATRIX_FRAMEBUFFER_EFFECTS
+#define RGB_MATRIX_KEYPRESSES
 #endif
+

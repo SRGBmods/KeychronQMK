@@ -1,4 +1,4 @@
-/* Copyright 2023 @ Keychron(https://www.keychron.com)
+/* Copyright 2024 @ Keychron(https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +20,6 @@
 #define WEAR_LEVELING_LOGICAL_SIZE 2048
 #define WEAR_LEVELING_BACKING_SIZE (WEAR_LEVELING_LOGICAL_SIZE * 2)
 
-/* Indication led */
-#define LED_MAC_OS_PIN A4
-#define LED_WIN_OS_PIN A5
-#define LED_OS_PIN_ON_STATE 1
-
 /* I2C driver Configuration */
 #define I2C1_SCL_PIN B8
 #define I2C1_SDA_PIN B9
@@ -34,3 +29,4 @@
 /* Factory test keys */
 #define FN_KEY1 MO(1)
 #define FN_KEY2 MO(3)
+

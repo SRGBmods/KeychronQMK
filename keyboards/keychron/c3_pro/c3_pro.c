@@ -1,4 +1,4 @@
-/* Copyright 2023 @ Keychron (https://www.keychron.com)
+/* Copyright 2024 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -75,6 +75,44 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
+#ifdef LED_MATRIX_ENABLE
+        case BL_TOGG:
+            if (record->event.pressed) {
+                switch (led_matrix_get_flags()) {
+                    case LED_FLAG_ALL: {
+                        led_matrix_set_flags(LED_FLAG_NONE);
+                        led_matrix_set_value_all(0);
+                    } break;
+                    default: {
+                        led_matrix_set_flags(LED_FLAG_ALL);
+                    } break;
+                }
+            }
+            if (!led_matrix_get_val()) {
+                led_matrix_set_flags(LED_FLAG_ALL);
+                led_matrix_increase_val();
+            }
+            return false;
+#endif
+#ifdef RGB_MATRIX_ENABLE
+        case RGB_TOG:
+            if (record->event.pressed) {
+                switch (rgb_matrix_get_flags()) {
+                    case LED_FLAG_ALL: {
+                        rgb_matrix_set_flags(LED_FLAG_NONE);
+                        rgb_matrix_set_color_all(0, 0, 0);
+                    } break;
+                    default: {
+                        rgb_matrix_set_flags(LED_FLAG_ALL);
+                    } break;
+                }
+            }
+            if(!rgb_matrix_get_val()){
+                rgb_matrix_set_flags(LED_FLAG_ALL);
+                rgb_matrix_increase_val();
+            }
+            return false;
+#endif
         case KC_OSSW:
             if (record->event.pressed) {
                 default_layer_xor(1U << 0);
@@ -88,6 +126,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+#ifdef LED_MATRIX_ENABLE
 bool led_matrix_indicators_kb(void) {
     if (!led_matrix_indicators_user()) {
         return false;
@@ -99,7 +138,19 @@ bool led_matrix_indicators_kb(void) {
 
     return true;
 }
+#endif
 
+#ifdef RGB_MATRIX_ENABLE
+bool rgb_matrix_indicators_kb(void){
+    if(!rgb_matrix_indicators_user()){
+        return false;
+    }
+    if(os_switch_indicate_count){
+        rgb_matrix_set_color_all(os_switch_indicate_count % 2 ? 0 : RGB_RED);
+    }
+    return true;
+}
+#endif
 void suspend_power_down_kb(void) {
     writePin(LED_WIN_OS_PIN, !LED_OS_PIN_ON_STATE);
     writePin(LED_MAC_OS_PIN, !LED_OS_PIN_ON_STATE);
