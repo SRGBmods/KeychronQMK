@@ -1,6 +1,6 @@
 # Keychron Q1 HE
 
-![Keychron Q1 HE](https://cdn.shopify.com/s/files/1/0059/0630/1017/files/Keychron-Q1-HE-Email-2.jpg?v=1701749565)
+![Keychron Q1 HE](https://cdn.shopify.com/s/files/1/0059/0630/1017/files/Keychron-Q1-HE-Email-2.jpg)
 
 A customizable 75% hall effect keyboard.
 
