@@ -18,17 +18,10 @@
 
 #ifdef RGB_MATRIX_ENABLE
 /* RGB Matrix driver configuration */
-#    define DRIVER_COUNT 2
 #    define RGB_MATRIX_LED_COUNT 101
-
-#    define SPI_SCK_PIN A5
-#    define SPI_MISO_PIN A6
-#    define SPI_MOSI_PIN A7
-
+#    define DRIVER_COUNT 2
 #    define DRIVER_CS_PINS \
         { B8, B9 }
-#    define SNLED23751_SPI_DIVISOR 16
-#    define SPI_DRIVER SPID1
 
 /* Set LED driver current */
 #    define SNLED27351_CURRENT_TUNE \
@@ -36,7 +29,6 @@
 
 /* Set to infinit, which is use in USB mode by default */
 #    define RGB_MATRIX_TIMEOUT RGB_MATRIX_TIMEOUT_INFINITE
-
 /* Allow shutdown of led driver to save power */
 #    define RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE
 /* Turn off backlight on low brightness to save power */
