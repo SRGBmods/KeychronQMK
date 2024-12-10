@@ -21,11 +21,11 @@
 #ifdef RGB_MATRIX_ENABLE
 const snled27351_led_t g_snled27351_leds[RGB_MATRIX_LED_COUNT] = {
 /* Refer to SNLED27351 manual for these locations
- *   driver
- *   |  R location
- *   |  |       G location
- *   |  |       |       B location
- *   |  |       |       | */
+ *  driver
+ *  |  R location
+ *  |  |        G location
+ *  |  |        |       B location
+ *  |  |        |       | */
    {0, G_1,     I_1,    H_1},
    {0, G_2,     I_2,    H_2},
    {0, G_3,     I_3,    H_3},
