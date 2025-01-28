@@ -129,7 +129,8 @@ void get_firmware_type(void) //Grab which fork of qmk a board is running.
     raw_hid_send(packet, 32);
 }
 
-bool srgb_raw_hid_rx(uint8_t *data, uint8_t length) {
+void raw_hid_receive(uint8_t *data, uint8_t length) 
+{
         switch (data[0]) {
         case GET_QMK_VERSION:
            
@@ -177,17 +178,6 @@ bool srgb_raw_hid_rx(uint8_t *data, uint8_t length) {
         break;
 
         default:
-        return false;
+        break;
     }
-    return true;
 }
-
-#if defined(VIA_ENABLE)
-bool via_command_kb(uint8_t *data, uint8_t length) {
-    return srgb_raw_hid_rx(data, length);
-}
-#else
-void raw_hid_receive(uint8_t *data, uint8_t length) {
-    srgb_raw_hid_rx(data, length);
-}
-#endif
