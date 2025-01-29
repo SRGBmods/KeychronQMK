@@ -55,6 +55,49 @@ static key_combination_t key_comb_list[] = {
 
 bool process_record_keychron_common(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case GET_QMK_VERSION:
+        get_qmk_version();
+
+        break;
+        case GET_PROTOCOL_VERSION:
+
+        get_signalrgb_protocol_version();
+
+        break;
+        case GET_UNIQUE_IDENTIFIER:
+
+        get_unique_identifier();
+
+        break;
+        case STREAM_RGB_DATA: 
+
+        led_streaming(data);
+
+        break;
+
+        case SET_SIGNALRGB_MODE_ENABLE: 
+
+        signalrgb_mode_enable();
+
+        break;
+
+        case SET_SIGNALRGB_MODE_DISABLE: 
+
+        signalrgb_mode_disable();
+
+        break;
+
+        case GET_TOTAL_LEDS:
+
+        get_total_leds();
+
+        break;
+
+        case GET_FIRMWARE_TYPE:
+
+        get_firmware_type();
+
+        break;
         case KC_MCTRL:
             if (record->event.pressed) {
                 register_code(KC_MISSION_CONTROL);
