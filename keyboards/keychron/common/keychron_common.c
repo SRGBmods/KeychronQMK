@@ -18,6 +18,7 @@
 #include "keychron_common.h"
 #include "raw_hid.h"
 #include "version.h"
+#include "quantum/signalrgb.h"
 
 #ifdef FACTORY_TEST_ENABLE
 #    include "factory_test.h"
