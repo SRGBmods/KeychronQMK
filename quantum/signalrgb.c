@@ -183,7 +183,7 @@ bool srgb_raw_hid_rx(uint8_t *data, uint8_t length) {
 }
 
 #if defined(VIA_ENABLE)
-__attribute__((weak)) bool via_command_kb(uint8_t *data, uint8_t length) {
+bool via_command_kb(uint8_t *data, uint8_t length) {
     return srgb_raw_hid_rx(data, length);
 }
 #else
