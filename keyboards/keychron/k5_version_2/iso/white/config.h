@@ -11,6 +11,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
+
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
@@ -18,15 +19,15 @@
 
 #ifdef LED_MATRIX_ENABLE
 /* LED matrix driver configuration */
-#    define LED_MATRIX_LED_COUNT 87
+#    define LED_MATRIX_LED_COUNT 109
 #    define DRIVER_CS_PINS \
-        { C9 }
+        { C1 }
 
 /* Set scan phase of led driver */
-#    define SNLED27351_PHASE_CHANNEL SNLED27351_SCAN_PHASE_6_CHANNEL
+#    define SNLED27351_PHASE_CHANNEL SNLED27351_SCAN_PHASE_8_CHANNEL
 /* Set LED driver current */
 #    define SNLED27351_CURRENT_TUNE \
-        { 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60 }
+        { 0x52, 0x52, 0x52, 0x52, 0x52, 0x52, 0x52, 0x52, 0x52, 0x52, 0x52, 0x52 }
 
 /* Set to infinit, which is use in USB mode by default */
 #    define LED_MATRIX_TIMEOUT LED_MATRIX_TIMEOUT_INFINITE
@@ -35,6 +36,12 @@
 #    define LED_MATRIX_DRIVER_LOAD_ENABLE
 /* Turn off backlight on low brightness to save power */
 #    define LED_MATRIX_BRIGHTNESS_TURN_OFF_VAL 48
+
+/* Low battery indicating led */
+#    define DIM_NUM_LOCK
+#    define NUM_LOCK_INDEX 37
+#    define LOW_BAT_IND_INDEX \
+        { 99 }
 
 #    define LED_MATRIX_KEYPRESSES
 #endif

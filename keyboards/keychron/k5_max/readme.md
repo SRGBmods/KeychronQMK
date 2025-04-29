@@ -2,7 +2,7 @@
 
 ![Keychron K5 Max](https://cdn.shopify.com/s/files/1/0059/0630/1017/files/K5-Max-page13.jpg?v=1705308494)
 
-A customizable 84 keys 100% fullsize keyboard.
+A customizable 108 keys 100% fullsize keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Keychron K5 Max

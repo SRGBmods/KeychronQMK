@@ -16,25 +16,29 @@
 
 #pragma once
 
-#ifdef LED_MATRIX_ENABLE
-/* LED matrix driver configuration */
-#    define LED_MATRIX_LED_COUNT 87
+#ifdef RGB_MATRIX_ENABLE
+/* RGB Matrix driver configuration */
+#    define RGB_MATRIX_LED_COUNT 109
 #    define DRIVER_CS_PINS \
-        { C9 }
+        { C13, C14 }
 
-/* Set scan phase of led driver */
-#    define SNLED27351_PHASE_CHANNEL SNLED27351_SCAN_PHASE_6_CHANNEL
 /* Set LED driver current */
 #    define SNLED27351_CURRENT_TUNE \
-        { 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60 }
+        { 0x25, 0x25, 0x25, 0x25, 0x25, 0x25, 0x25, 0x25, 0x25, 0x25, 0x25, 0x25 }
 
 /* Set to infinit, which is use in USB mode by default */
-#    define LED_MATRIX_TIMEOUT LED_MATRIX_TIMEOUT_INFINITE
+#    define RGB_MATRIX_TIMEOUT RGB_MATRIX_TIMEOUT_INFINITE
 /* Allow shutdown of led driver to save power */
-#    define LED_MATRIX_DRIVER_SHUTDOWN_ENABLE
-#    define LED_MATRIX_DRIVER_LOAD_ENABLE
+#    define RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE
+#    define RGB_MATRIX_DRIVER_LOAD_ENABLE
 /* Turn off backlight on low brightness to save power */
-#    define LED_MATRIX_BRIGHTNESS_TURN_OFF_VAL 48
+#    define RGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL 48
 
-#    define LED_MATRIX_KEYPRESSES
+/* Indications */
+#    define NUM_LOCK_INDEX 37
+#    define LOW_BAT_IND_INDEX \
+        { 99 }
+
+#    define RGB_MATRIX_KEYPRESSES
+#    define RGB_MATRIX_FRAMEBUFFER_EFFECTS
 #endif

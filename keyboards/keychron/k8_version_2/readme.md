@@ -18,8 +18,8 @@ Make example for this keyboard (after setting up your build environment):
     make keychron/k8_version_2/iso/rgb:via
     make keychron/k8_version_2/iso/white:default
     make keychron/k8_version_2/iso/white:via
-    make keychron/k8_version_2/jisi/rgb:default
-    make keychron/k8_version_2/jisi/rgb:via
+    make keychron/k8_version_2/jis/rgb:default
+    make keychron/k8_version_2/jis/rgb:via
     make keychron/k8_version_2/jis/white:default
     make keychron/k8_version_2/jis/white:via
 
@@ -33,8 +33,8 @@ Flashing example for this keyboard:
     make keychron/k8_version_2/iso/rgb:via:flash
     make keychron/k8_version_2/iso/white:default:flash
     make keychron/k8_version_2/iso/white:via:flash
-    make keychron/k8_version_2/jisi/rgb:default:flash
-    make keychron/k8_version_2/jisi/rgb:via:flash
+    make keychron/k8_version_2/jis/rgb:default:flash
+    make keychron/k8_version_2/jis/rgb:via:flash
     make keychron/k8_version_2/jis/white:default:flash
     make keychron/k8_version_2/jis/white:via:flash
 
