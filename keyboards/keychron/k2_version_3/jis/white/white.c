@@ -39,7 +39,7 @@ const snled27351_led_t g_snled27351_leds[LED_MATRIX_LED_COUNT] = {
     {0, CB1_CA3},
     {0, CB1_CA2},
     {0, CB1_CA1},
-    
+
     {0, CB2_CA16},
     {0, CB2_CA15},
     {0, CB2_CA14},
@@ -52,7 +52,7 @@ const snled27351_led_t g_snled27351_leds[LED_MATRIX_LED_COUNT] = {
     {0, CB2_CA7},
     {0, CB2_CA6},
     {0, CB2_CA5},
-    {0, CB2_CA4},        
+    {0, CB2_CA4},
     {0, CB2_CA3},
     {0, CB2_CA2},
     {0, CB2_CA1},
@@ -71,8 +71,8 @@ const snled27351_led_t g_snled27351_leds[LED_MATRIX_LED_COUNT] = {
     {0, CB3_CA5},
     {0, CB3_CA4},
     {0, CB3_CA3},
-    {0, CB3_CA1},      
-    
+    {0, CB3_CA1},
+
     {0, CB4_CA16},
     {0, CB4_CA15},
     {0, CB4_CA14},
@@ -87,7 +87,7 @@ const snled27351_led_t g_snled27351_leds[LED_MATRIX_LED_COUNT] = {
     {0, CB4_CA5},
     {0, CB4_CA3},
     {0, CB4_CA1},
-  
+
     {0, CB5_CA16},
     {0, CB5_CA14},
     {0, CB5_CA13},
@@ -143,9 +143,9 @@ led_config_t g_led_config = {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,    1,
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,    1,    1, 
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,    1,    1,
         1,    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,    1, 1, 1,
-        1, 1, 1, 1,       1,       1, 1, 1, 1, 1, 1, 1, 
+        1, 1, 1, 1,       1,       1, 1, 1, 1, 1, 1, 1,
     }
 };
 
