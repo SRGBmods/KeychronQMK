@@ -84,7 +84,7 @@
   "matrix": {"rows": 6, "cols" : 19},
   "layouts": {
     "keymap": [
-       [
+      [
         {
           "c": "#777777"
         },
