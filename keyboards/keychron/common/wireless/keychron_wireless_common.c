@@ -1,4 +1,4 @@
-/* Copyright 2022 @ Keychron (https://www.keychron.com)
+/* Copyright 2022~2025 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,6 +32,7 @@ bool firstDisconnect = true;
 
 static uint32_t pairing_key_timer;
 static uint8_t  host_idx = 0;
+extern uint32_t connected_idle_time;
 
 bool process_record_keychron_wireless(uint16_t keycode, keyrecord_t *record) {
     static uint8_t host_idx;
@@ -84,7 +85,7 @@ void lkbt51_param_init(void) {
     // clang-format off
     /* Set bluetooth parameters */
     module_param_t param = {.event_mode             = 0x02,
-                            .connected_idle_timeout = 7200,
+                            .connected_idle_timeout = connected_idle_time,
                             .pairing_timeout        = 180,
                             .pairing_mode           = 0,
                             .reconnect_timeout      = 5,

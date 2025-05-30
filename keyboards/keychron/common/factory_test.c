@@ -1,4 +1,4 @@
-/* Copyright 2021 @ Keychron (https://www.keychron.com)
+/* Copyright 2021~2025 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,12 @@
 #    include "lpm.h"
 #    include "lkbt51.h"
 #    include "indicator.h"
+#endif
+#ifdef DYNAMIC_DEBOUNCE_ENABLE
+#    include "keychron_debounce.h"
+#endif
+#ifdef SNAP_CLICK_ENABLE
+#    include "snap_click.h"
 #endif
 #include "config.h"
 #include "version.h"
@@ -92,7 +98,9 @@ static uint8_t  backlight_test_mode = BACKLIGHT_TEST_OFF;
 static uint32_t factory_reset_ind_timer = 0;
 static uint8_t  factory_reset_ind_state = 0;
 static bool     report_os_sw_state      = false;
-static bool     keys_released           = true;
+static uint8_t  keys_released           = 0;
+
+extern void eeconfig_reset_custom_rgb(void);
 
 void factory_timer_start(void) {
     factory_reset_timer = timer_read32();
@@ -112,6 +120,12 @@ static inline void factory_timer_check(void) {
             eeconfig_init();
             keymap_config.raw = eeconfig_read_keymap();
             default_layer_set(default_layer_tmp);
+#ifdef DYNAMIC_DEBOUNCE_ENABLE
+            debounce_config_reset();
+#endif
+#ifdef SNAP_CLICK_ENABLE
+            snap_click_config_reset();
+#endif
 #ifdef LED_MATRIX_ENABLE
             if (!led_matrix_is_enabled()) led_matrix_enable();
             led_matrix_init();
@@ -119,8 +133,15 @@ static inline void factory_timer_check(void) {
 #ifdef RGB_MATRIX_ENABLE
             if (!rgb_matrix_is_enabled()) rgb_matrix_enable();
             rgb_matrix_init();
+#if defined(KEYCHRON_RGB_ENABLE) && defined(EECONFIG_SIZE_CUSTOM_RGB)
+            eeconfig_reset_custom_rgb();
+#endif
 #endif
 #ifdef LK_WIRELESS_ENABLE
+#ifdef EECONFIG_SIZE_WIRELESS_CONFIG
+            wireless_config_reset();
+#endif
+            wait_ms(50);
             lkbt51_factory_reset(P2P4G_CELAR_MASK);
 #endif
         } else if (factory_reset_state == KEY_PRESS_BACKLIGTH_TEST) {
@@ -168,13 +189,21 @@ bool process_record_factory_test(uint16_t keycode, keyrecord_t *record) {
             break;
 #endif
         case KC_J:
+#if defined(FN_J_KEY)
+        case FN_J_KEY:
+#endif
             if (record->event.pressed) {
                 factory_reset_state |= KEY_PRESS_J;
                 if (factory_reset_state == 0x07) factory_timer_start();
-                if (factory_reset_state & KEY_PRESS_FN) return false;
+                if ((factory_reset_state & KEY_PRESS_FN) && keycode == KC_J) return false;
             } else {
                 factory_reset_state &= ~KEY_PRESS_J;
                 factory_reset_timer = 0;
+                /* Avoid changing backlight effect on key released if FN_Z_KEY is mode*/
+                if (keys_released & KEY_PRESS_J) {
+                    keys_released &= ~KEY_PRESS_J;
+                    if (keycode >= QK_BACKLIGHT_ON && keycode <= RGB_MODE_TWINKLE) return false;
+                }
             }
             break;
         case KC_Z:
@@ -189,10 +218,9 @@ bool process_record_factory_test(uint16_t keycode, keyrecord_t *record) {
                 factory_reset_state &= ~KEY_PRESS_Z;
                 factory_reset_timer = 0;
                 /* Avoid changing backlight effect on key released if FN_Z_KEY is mode*/
-
-                if (!keys_released && keycode >= QK_BACKLIGHT_ON && keycode <= RGB_MODE_TWINKLE) {
-                    keys_released = true;
-                    return false;
+                if (keys_released & KEY_PRESS_Z) {
+                    keys_released &= ~KEY_PRESS_Z;
+                    if (keycode >= QK_BACKLIGHT_ON && keycode <= RGB_MODE_TWINKLE) return false;
                 }
             }
             break;
@@ -327,10 +355,8 @@ void factory_test_rx(uint8_t *data, uint8_t length) {
         /* Verify checksum */
         if ((checksum & 0xFF) != data[RAW_EPSIZE - 2] || checksum >> 8 != data[RAW_EPSIZE - 1]) return;
 
-#ifdef LK_WIRELESS_ENABLE
         uint8_t payload[32];
         uint8_t len = 0;
-#endif
 
         switch (data[1]) {
             case FACTORY_TEST_CMD_BACKLIGHT:

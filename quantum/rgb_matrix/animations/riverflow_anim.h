@@ -12,7 +12,7 @@ bool RIVERFLOW(effect_params_t* params) {
         hsv.v         = scale8(abs8(sin8(time) - 128) * 2, hsv.v);
         RGB rgb       = rgb_matrix_hsv_to_rgb(hsv);
         RGB_MATRIX_TEST_LED_FLAGS();
-        rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+        rgb_matrix_region_set_color(params->region, params->region, i, rgb.r, rgb.g, rgb.b);
     }
 
     return rgb_matrix_check_finished_leds(led_max);

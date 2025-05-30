@@ -1,4 +1,4 @@
-/* Copyright 2023 @ lokher (https://www.keychron.com)
+/* Copyright 2023~2025 @ lokher (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,12 +25,7 @@
 
 #define P2P4G_HOST_DEVICES_COUNT 1
 
-//  Uint: Second
-#ifndef DISCONNECTED_BACKLIGHT_OFF_DELAY_TIME
-#    define DISCONNECTED_BACKLIGHT_OFF_DELAY_TIME 40
-#endif
-
 //  Uint: Second, the timer restarts on key activities.
-#ifndef CONNECTED_BACKLIGHT_OFF_DELAY_TIME
-#    define CONNECTED_BACKLIGHT_OFF_DELAY_TIME 600
+#ifndef CONNECTED_IDLE_TIME
+#    define CONNECTED_IDLE_TIME 7200
 #endif

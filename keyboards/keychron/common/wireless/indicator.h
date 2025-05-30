@@ -1,4 +1,4 @@
-/* Copyright 2023 @ lokher (https://www.keychron.com)
+/* Copyright 2023~2025 @ lokher (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -101,7 +101,7 @@ typedef struct {
 void indicator_init(void);
 void indicator_set(wt_state_t state, uint8_t host_index);
 void indicator_set_backlit_timeout(uint32_t time);
-void indicator_backlight_timer_reset(bool enable);
+void indicator_reset_backlit_time(void);
 bool indicator_hook_key(uint16_t keycode);
 void indicator_enable(void);
 void indicator_disable(void);

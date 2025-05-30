@@ -28,10 +28,10 @@ bool effect_runner_bloom(effect_params_t* params, flower_blooming_f effect_func)
         RGB_MATRIX_TEST_LED_FLAGS();
         if (g_led_config.point[i].y > k_rgb_matrix_center.y) {
             RGB bgr = rgb_matrix_hsv_to_rgb(effect_func(rgb_matrix_config.hsv, i, time));
-            rgb_matrix_set_color(i, bgr.b, bgr.g, bgr.r);
+            rgb_matrix_region_set_color(params->region, i, bgr.b, bgr.g, bgr.r);
         } else {
             RGB rgb = rgb_matrix_hsv_to_rgb(effect_func(rgb_matrix_config.hsv, i, time));
-            rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+            rgb_matrix_region_set_color(params->region, i, rgb.r, rgb.g, rgb.b);
         }
     }
     return rgb_matrix_check_finished_leds(led_max);

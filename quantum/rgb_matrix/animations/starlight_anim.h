@@ -7,7 +7,7 @@ void set_starlight_color(int i, effect_params_t* params) {
     HSV      hsv  = rgb_matrix_config.hsv;
     hsv.v         = scale8(abs8(sin8(time) - 128) * 2, hsv.v);
     RGB rgb       = hsv_to_rgb(hsv);
-    rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+    rgb_matrix_region_set_color(params->region, i, rgb.r, rgb.g, rgb.b);
 }
 
 bool STARLIGHT(effect_params_t* params) {

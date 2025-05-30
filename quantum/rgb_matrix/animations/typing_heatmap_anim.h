@@ -52,25 +52,29 @@ void process_rgb_matrix_typing_heatmap(uint8_t row, uint8_t col) {
 static uint16_t heatmap_decrease_timer;
 // Whether we should decrement the heatmap values during the next update.
 static bool decrease_heatmap_values;
+static uint8_t loop = 0;
 
 bool TYPING_HEATMAP(effect_params_t* params) {
     RGB_MATRIX_USE_LIMITS(led_min, led_max);
 
     if (params->init) {
-        rgb_matrix_set_color_all(0, 0, 0);
+        rgb_matrix_region_set_color_all(params->region, 0, 0, 0);
         memset(g_rgb_frame_buffer, 0, sizeof g_rgb_frame_buffer);
     }
 
     // The heatmap animation might run in several iterations depending on
     // `RGB_MATRIX_LED_PROCESS_LIMIT`, therefore we only want to update the
     // timer when the animation starts.
-    if (params->iter == 0) {
+    if (params->iter == 0 && loop == 0) {
+        loop |= 1 << params->region;
         decrease_heatmap_values = timer_elapsed(heatmap_decrease_timer) >= RGB_MATRIX_TYPING_HEATMAP_DECREASE_DELAY_MS;
 
         // Restart the timer if we are going to decrease the heatmap this frame.
         if (decrease_heatmap_values) {
             heatmap_decrease_timer = timer_read();
         }
+    } else if (params->iter == 4) {
+        loop &= ~(1 << params->region);
     }
 
     // Render heatmap & decrease
@@ -84,7 +88,7 @@ bool TYPING_HEATMAP(effect_params_t* params) {
 
                 HSV hsv = {170 - qsub8(val, 85), rgb_matrix_config.hsv.s, scale8((qadd8(170, val) - 170) * 3, rgb_matrix_config.hsv.v)};
                 RGB rgb = rgb_matrix_hsv_to_rgb(hsv);
-                rgb_matrix_set_color(g_led_config.matrix_co[row][col], rgb.r, rgb.g, rgb.b);
+                rgb_matrix_region_set_color(params->region, g_led_config.matrix_co[row][col], rgb.r, rgb.g, rgb.b);
 
                 if (decrease_heatmap_values) {
                     g_rgb_frame_buffer[row][col] = qsub8(val, 1);

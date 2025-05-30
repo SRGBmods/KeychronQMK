@@ -1,4 +1,4 @@
-/* Copyright 2023 @ lokher (https://www.keychron.com)
+/* Copyright 2023~2025 @ lokher (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -59,6 +59,8 @@ enum {
     BACKLIGHT_ON_CONNECTED   = 0x01,
     BACKLIGHT_ON_UNCONNECTED = 0x02,
 };
+
+extern uint16_t backlit_disable_time;
 
 static indicator_config_t pairing_config      = INDICATOR_CONFIG_PARING;
 static indicator_config_t connected_config    = INDICATOR_CONFIG_CONNECTD;
@@ -201,12 +203,13 @@ inline void indicator_disable(void) {
     LED_DRIVER_DISABLE_NOEEPROM();
 }
 
-void indicator_set_backlit_timeout(uint32_t time) {
-    LED_DRIVER_DISABLE_TIMEOUT_SET(time);
+void indicator_reset_backlit_time(void) {
+    LED_DRIVER_DISABLE_TIME_RESET();
 }
 
-static inline void indicator_reset_backlit_time(void) {
-    LED_DRIVER_DISABLE_TIME_RESET();
+void indicator_set_backlit_timeout(uint32_t time) {
+    LED_DRIVER_DISABLE_TIMEOUT_SET(time);
+    indicator_reset_backlit_time();
 }
 
 bool indicator_is_enabled(void) {
@@ -443,7 +446,7 @@ void indicator_set(wt_state_t state, uint8_t host_index) {
                 indicator_timer_cb((void *)&indicator_config.type);
             }
 #if defined(LED_MATRIX_ENABLE) || defined(RGB_MATRIX_ENABLE)
-            indicator_set_backlit_timeout(DECIDE_TIME(CONNECTED_BACKLIGHT_DISABLE_TIMEOUT * 1000, indicator_config.duration));
+            indicator_set_backlit_timeout(DECIDE_TIME(backlit_disable_time * 1000, indicator_config.duration));
 #endif
             break;
 
@@ -541,6 +544,9 @@ void indicator_battery_low_enable(bool enable) {
     } else {
         rtc_time          = 0;
         bat_low_ind_state = 0;
+#    if defined(BAT_LOW_LED_PIN)
+        writePin(BAT_LOW_LED_PIN, !BAT_LOW_LED_PIN_ON_STATE);
+#    endif
 #    if defined(SPACE_KEY_LOW_BAT_IND)
         indicator_eeconfig_reload();
         if (!LED_DRIVER_IS_ENABLED()) indicator_disable();
@@ -552,7 +558,8 @@ void indicator_battery_low_enable(bool enable) {
 void indicator_battery_low(void) {
 #if defined(BAT_LOW_LED_PIN) || defined(SPACE_KEY_LOW_BAT_IND)
     if (bat_low_ind_state) {
-        if ((bat_low_ind_state & 0x0F) <= (LOW_BAT_LED_BLINK_TIMES) && timer_elapsed32(bat_low_backlit_indicator) > (LOW_BAT_LED_BLINK_PERIOD)) {
+        if ((bat_low_ind_state & 0x0F) <= (LOW_BAT_LED_BLINK_TIMES) &&
+            timer_elapsed32(bat_low_backlit_indicator) > (LOW_BAT_LED_BLINK_PERIOD)) {
             if (bat_low_ind_state & 0x80) {
                 bat_low_ind_state &= 0x7F;
                 bat_low_ind_state++;

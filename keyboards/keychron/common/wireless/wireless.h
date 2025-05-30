@@ -1,4 +1,4 @@
-/* Copyright 2023 @ lokher (https://www.keychron.com)
+/* Copyright 2023~2025 @ lokher (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,6 +67,8 @@ typedef struct {
 extern void register_wt_tasks(void);
 
 void wireless_init(void);
+void wireless_config_reset(void);
+
 void wireless_set_transport(wt_func_t *transport);
 void wireless(void);
 
@@ -99,3 +101,6 @@ wt_state_t wireless_get_state(void);
 void wireless_low_battery_shutdown(void);
 
 bool process_record_wireless(uint16_t keycode, keyrecord_t *record);
+
+void wireless_raw_hid_rx(uint8_t *data, uint8_t length);
+

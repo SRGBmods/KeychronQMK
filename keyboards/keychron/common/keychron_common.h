@@ -55,6 +55,10 @@ enum {
     PROF2,
     PROF3,
 #endif
+#ifdef LED_MATRIX_ENABLE
+    BL_SPI,
+    BL_SPD,
+#endif
     NEW_SAFE_RANGE,
 };
 
@@ -83,10 +87,10 @@ typedef struct PACKED {
     uint8_t keycode[3];
 } key_combination_t;
 
+void keychron_common_init(void);
 bool process_record_keychron_common(uint16_t keycode, keyrecord_t *record);
 void keychron_common_task(void);
 
 #ifdef ENCODER_ENABLE
 void encoder_cb_init(void);
 #endif
-

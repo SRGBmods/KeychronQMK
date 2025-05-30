@@ -194,6 +194,11 @@ static inline void lpm_wakeup(void) {
 
     halInit();
 
+#if defined(DIP_SWITCH_PINS)
+    /* Init dip switch as early as possible, and read it later. */
+    dip_switch_init();
+#endif
+
 #ifdef ENCODER_ENABLE
     encoder_cb_init();
 #endif
@@ -227,15 +232,30 @@ static inline void lpm_wakeup(void) {
 
 #endif
 
-#if defined(DIP_SWITCH_PINS)
-    dip_switch_init();
-    dip_switch_read(true);
-#endif
 
     /* Call debounce_free() to avoiding memory leak of debounce_counters as debounce_init()
     invoked in matrix_init() alloc new memory to debounce_counters */
     debounce_free();
     matrix_init();
+
+#ifdef ENABLE_RGB_MATRIX_PIXEL_RAIN
+    extern void PIXEL_RAIN_init(void);
+    PIXEL_RAIN_init();
+#endif
+
+#ifdef ENABLE_RGB_MATRIX_PIXEL_FLOW
+    extern void PIXEL_FLOW_init(void);
+    PIXEL_FLOW_init();
+#endif
+
+#ifdef ENABLE_RGB_MATRIX_PIXEL_FRACTAL
+    extern void PIXEL_FRACTAL_init(void);
+    PIXEL_FRACTAL_init();
+#endif
+
+#if defined(DIP_SWITCH_PINS)
+    dip_switch_read(true);
+#endif
 }
 
 void lpm_task(void) {

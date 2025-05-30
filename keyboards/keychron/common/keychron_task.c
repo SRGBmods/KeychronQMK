@@ -1,4 +1,4 @@
-/* Copyright 2023 @ Keychron (https://www.keychron.com)
+/* Copyright 2023~2025 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,9 @@
 #ifdef FACTORY_TEST_ENABLE
 #    include "factory_test.h"
 #endif
+#ifdef RETAIL_DEMO_ENABLE
+#    include "retail_demo.h"
+#endif
 
 __attribute__((weak)) bool process_record_keychron_kb(uint16_t keycode, keyrecord_t *record) {
     return true;
@@ -34,9 +37,26 @@ bool process_record_keychron(uint16_t keycode, keyrecord_t *record) {
 #ifdef FACTORY_TEST_ENABLE
     if (!process_record_factory_test(keycode, record)) return false;
 #endif
-    // extern bool process_record_keychron_kb(uint16_t keycode, keyrecord_t *record);
+
+#ifdef SNAP_CLICK_ENABLE
+    extern bool process_record_snap_click(uint16_t keycode, keyrecord_t * record);
+    if (!process_record_snap_click(keycode, record)) return false;
+#endif
 
     if (!process_record_keychron_kb(keycode, record)) return false;
+
+#if defined(KEYCHRON_RGB_ENABLE) && defined(EECONFIG_SIZE_CUSTOM_RGB)
+#    if defined(RETAIL_DEMO_ENABLE)
+    if (!process_record_retail_demo(keycode, record)) {
+        return false;
+    }
+#    endif
+
+    extern bool process_record_keychron_rgb(uint16_t keycode, keyrecord_t *record);
+    if (!process_record_keychron_rgb(keycode, record)) {
+        return false;
+    }
+#endif
 
     return true;
 }
@@ -79,6 +99,10 @@ void keychron_task(void) {
 #ifdef FACTORY_TEST_ENABLE
     factory_test_task();
 #endif
+#if defined(RETAIL_DEMO_ENABLE) && defined(KEYCHRON_RGB_ENABLE) && defined(EECONFIG_SIZE_CUSTOM_RGB)
+    retail_demo_task();
+#endif
+
     keychron_common_task();
 
     keychron_task_kb();
@@ -86,7 +110,7 @@ void keychron_task(void) {
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_user(keycode, record)) return false;
-
+    
     if (!process_record_keychron(keycode, record)) return false;
 
     return true;
