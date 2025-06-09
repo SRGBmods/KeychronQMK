@@ -15,23 +15,13 @@
  */
 
 #include "quantum.h"
-#include "keychron_task.h"
+#include "keychron_common.h"
 #ifdef FACTORY_TEST_ENABLE
 #    include "factory_test.h"
-#    include "keychron_common.h"
 #endif
 #ifdef LK_WIRELESS_ENABLE
 #    include "lkbt51.h"
 #    include "wireless.h"
-#    include "keychron_wireless_common.h"
-#    include "battery.h"
-#endif
-#if HAL_USE_ADC
-#    include "analog.h"
-#endif
-#include "eeprom_he.h"
-#ifdef ANANLOG_MATRIX
-#    include "analog_matrix.h"
 #endif
 
 #ifndef POWER_ON_LED_DURATION
@@ -39,7 +29,6 @@
 #endif
 
 static uint32_t power_on_indicator_timer;
-
 
 #ifdef DIP_SWITCH_ENABLE
 bool dip_switch_update_kb(uint8_t index, bool active) {

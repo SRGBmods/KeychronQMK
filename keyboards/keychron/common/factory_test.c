@@ -67,7 +67,6 @@
 #endif
 #define KEY_MASK(r, c)  (virtual_matrix[r] & (1 << c))
 
-
 enum {
     BACKLIGHT_TEST_OFF = 0,
     BACKLIGHT_TEST_WHITE,

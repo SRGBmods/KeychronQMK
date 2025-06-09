@@ -49,4 +49,3 @@ const uint16_t PROGMEM default_profiles[PROFILE_COUNT][MATRIX_ROWS][MATRIX_COLS]
         XB_L3,   0,       0,       0,       0,       0,       0,       0,       0,       0,       0,       XB_A,    XB_R3,   XB_UP,
         XB_LT,   0,       0,                                  0,                         0,       0,       XB_RT,   XB_LEFT, XB_DOWN, XB_RGHT)
 };
-

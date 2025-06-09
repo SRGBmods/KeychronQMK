@@ -58,7 +58,7 @@
 
 #    define BT_HOST_DEVICES_COUNT 3
 
-#    if defined(RGB_MATRIX_ENABLE) || defined(LED_MATRIX_ENABLE)
+#    if defined(RGB_MATRIX_ENABLE)
 
 #        define LED_DRIVER_SHUTDOWN_PIN B7
 
@@ -69,7 +69,7 @@
             { 24 }
 
 #        define BAT_LEVEL_LED_LIST \
-            { 21, 22, 23, 24, 25, 26, 27, 28, 29, 30  }
+            { 21, 22, 23, 24, 25, 26, 27, 28, 29, 30 }
 
 /* Backlit disable timeout when keyboard is disconnected(unit: second) */
 #        define DISCONNECTED_BACKLIGHT_DISABLE_TIMEOUT 40
@@ -88,11 +88,6 @@
 /* Enable bluetooth NKRO */
 #    define WIRELESS_NKRO_ENABLE
 
-/* Raw hid command for factory test and bluetooth DFU */
-#    define RAW_HID_CMD 0xAA ... 0xAB
-#else
-/* Raw hid command for factory test */
-#    define RAW_HID_CMD 0xAB
 #endif
 
 /* Factory test keys */

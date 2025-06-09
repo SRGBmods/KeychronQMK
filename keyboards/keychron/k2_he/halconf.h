@@ -22,7 +22,7 @@
 #define HAL_USE_SPI TRUE
 #define HAL_USE_I2C TRUE
 
-#if defined(LK_WIRELESS_ENABLE) || defined(ENCODER_ENABLE)
+#if defined(LK_WIRELESS_ENABLE)
 #    define PAL_USE_CALLBACKS TRUE
 #endif
 

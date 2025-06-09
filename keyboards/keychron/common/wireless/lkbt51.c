@@ -598,7 +598,6 @@ void lkbt51_get_ms_swift_pairing_name(void) {
     lkbt51_send_cmd(payload, i, false, false);
 }
 
-
 void lkbt51_factory_reset(uint8_t p2p4g_clr_msk) {
     uint8_t i = 0;
     memset(payload, 0, PACKET_MAX_LEN);

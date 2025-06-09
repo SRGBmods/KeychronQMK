@@ -160,6 +160,3 @@ typedef struct __attribute__((__packed__)){
 } calibration_t;
 
 #pragma pack(pop)
-
-
-

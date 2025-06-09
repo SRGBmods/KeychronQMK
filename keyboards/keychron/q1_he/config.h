@@ -57,7 +57,7 @@
 
 #    define BT_HOST_DEVICES_COUNT 3
 
-#    if defined(RGB_MATRIX_ENABLE) || defined(LED_MATRIX_ENABLE)
+#    if defined(RGB_MATRIX_ENABLE)
 
 #        define LED_DRIVER_SHUTDOWN_PIN B7
 
@@ -87,11 +87,6 @@
 /* Enable bluetooth NKRO */
 #    define WIRELESS_NKRO_ENABLE
 
-/* Raw hid command for factory test and bluetooth DFU */
-#    define RAW_HID_CMD 0xAA ... 0xAB
-#else
-/* Raw hid command for factory test */
-#    define RAW_HID_CMD 0xAB
 #endif
 
 /* Factory test keys */

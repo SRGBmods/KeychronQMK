@@ -256,7 +256,6 @@ bool profile_set_socd(uint8_t *data) {
     // Same key is not allowed
     if (type && row1 == row2 && col1 == col2) return false;
 
-
     analog_matrix_profile_t *prof = &profile[prof_idx];
 
     if (type) {
@@ -276,7 +275,6 @@ bool profile_reset(uint8_t prof_index) {
     if (prof_index >= PROFILE_COUNT) return false;
 
     analog_matrix_profile_t *prof = &profile[prof_index];
-
 
     memset(prof, 0, sizeof(profile[0]));
     // Default
