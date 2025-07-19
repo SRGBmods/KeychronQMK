@@ -1,4 +1,4 @@
-/* Copyright 2023 @ Keychron (https://www.keychron.com)
+/* Copyright 2024 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,63 +16,25 @@
 
 #include "quantum.h"
 
-static uint8_t win_lock_state = 0;
-
-#define SET_LED_WIN_LOCK_ON writePin(LED_WIN_LOCK_PIN, LED_WIN_LOCK_PIN_ON_STATE)
-#define SET_LED_WIN_LOCK_OFF writePin(LED_WIN_LOCK_PIN, !LED_WIN_LOCK_PIN_ON_STATE)
-
-static void set_led_win_lock_state(void) {
-    if (win_lock_state) {
-        SET_LED_WIN_LOCK_ON;
-    } else {
-        SET_LED_WIN_LOCK_OFF;
-    }
-}
-
 void eeconfig_init_kb(void) {
-#if (EECONFIG_KB_DATA_SIZE) == 0
-    // Reset Keyboard EEPROM value to blank, rather than to a set value
-    eeconfig_update_kb(0);
-#endif
     keymap_config.raw  = eeconfig_read_keymap();
     keymap_config.nkro = 1;
     eeconfig_update_keymap(keymap_config.raw);
-
-    win_lock_state = 0;
-    eeconfig_update_user_datablock(&win_lock_state);
-
     eeconfig_init_user();
 }
 
 void keyboard_post_init_kb(void) {
     setPinOutputPushPull(LED_WIN_LOCK_PIN);
-    eeconfig_read_user_datablock(&win_lock_state);
 
     keyboard_post_init_user();
 }
 
 void housekeeping_task_kb() {
-    set_led_win_lock_state();
-}
-
-bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_user(keycode, record)) {
-        return false;
-    }
-    switch (keycode) {
-        case GU_TOGG:
-            if (record->event.pressed) {
-                win_lock_state = !win_lock_state;
-                eeconfig_update_user_datablock(&win_lock_state);
-            }
-            return true;
-        default:
-            return true;
-    }
+    writePin(LED_WIN_LOCK_PIN, keymap_config.no_gui ? LED_WIN_LOCK_PIN_ON_STATE : !LED_WIN_LOCK_PIN_ON_STATE);
 }
 
 void suspend_power_down_kb(void) {
-    SET_LED_WIN_LOCK_OFF;
+    writePin(LED_WIN_LOCK_PIN, !LED_WIN_LOCK_PIN_ON_STATE);
 
     suspend_power_down_user();
 }

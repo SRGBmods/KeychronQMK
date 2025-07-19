@@ -1,4 +1,4 @@
-/* Copyright 2023 @ Keychron (https://www.keychron.com)
+/* Copyright 2024 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,6 @@ const ckled2001_led PROGMEM g_ckled2001_leds[LED_MATRIX_LED_COUNT] = {
  *   |  LED address
  *   |  |   */
     {0, F_1 },
-    {0, F_2 },
     {0, F_3 },
     {0, F_4 },
     {0, F_5 },
@@ -38,6 +37,9 @@ const ckled2001_led PROGMEM g_ckled2001_leds[LED_MATRIX_LED_COUNT] = {
     {0, F_13},
     {0, F_14},
     {0, F_15},
+    {0, F_16},
+    {0, G_1 },
+    {0, G_2 },
 
     {0, E_1 },
     {0, E_2 },
@@ -54,6 +56,9 @@ const ckled2001_led PROGMEM g_ckled2001_leds[LED_MATRIX_LED_COUNT] = {
     {0, E_13},
     {0, E_14},
     {0, E_15},
+    {0, E_16},
+    {0, G_3 },
+    {0, G_4 },
 
     {0, D_1 },
     {0, D_2 },
@@ -70,6 +75,9 @@ const ckled2001_led PROGMEM g_ckled2001_leds[LED_MATRIX_LED_COUNT] = {
     {0, D_13},
     {0, D_14},
     {0, D_15},
+    {0, D_16},
+    {0, G_5 },
+    {0, G_6 },
 
     {0, C_1 },
     {0, C_2 },
@@ -83,11 +91,12 @@ const ckled2001_led PROGMEM g_ckled2001_leds[LED_MATRIX_LED_COUNT] = {
     {0, C_10},
     {0, C_11},
     {0, C_12},
-    {0, C_13},
+    {0, C_14},
     {0, C_15},
+    {0, C_16},
+    {0, G_7 },
 
     {0, B_1 },
-    {0, B_2 },
     {0, B_3 },
     {0, B_4 },
     {0, B_5 },
@@ -99,16 +108,23 @@ const ckled2001_led PROGMEM g_ckled2001_leds[LED_MATRIX_LED_COUNT] = {
     {0, B_11},
     {0, B_12},
     {0, B_13},
+    {0, B_14},
+    {0, B_15},
+    {0, B_16},
+    {0, G_8 },
+    {0, G_9 },
 
     {0, A_1 },
     {0, A_2 },
     {0, A_3 },
-    {0, A_6 },
+    {0, A_7 },
     {0, A_10},
     {0, A_11},
     {0, A_12},
     {0, A_13},
     {0, A_14},
     {0, A_15},
+    {0, A_16},
+    {0, G_10},
 };
 #endif

@@ -1,4 +1,4 @@
-/* Copyright 2023 @ Keychron (https://www.keychron.com)
+/* Copyright 2024 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,25 +17,21 @@
 #pragma once
 
 #ifdef LED_MATRIX_ENABLE
-/* RGB Matrix Driver Configuration */
+/* LED Matrix Driver Configuration */
 #    define DRIVER_COUNT 1
 #    define DRIVER_ADDR_1 0b1110100
 
-/* RGB Matrix Configuration */
-#    define LED_MATRIX_LED_COUNT 82
+/* LED Matrix Configuration */
+#    define LED_MATRIX_LED_COUNT 98
 
-/* Scan phase of led driver set as MSKPHASE_6CHANNEL(defined as 0x03 in CKLED2001.h) */
-#    define PHASE_CHANNEL MSKPHASE_6CHANNEL
+/* Scan phase of led driver */
+#    define PHASE_CHANNEL MSKPHASE_9CHANNEL
 #    define CKLED2001_CURRENT_TUNE \
         { 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60 }
 
-/* turn off effects when suspended */
+/* Turn off backlight when suspended */
 #    define LED_DISABLE_WHEN_USB_SUSPENDED
 
-// LED Matrix Animation modes. Explicitly enabled
-// For full list of effects, see:
-// https://docs.qmk.fm/#/feature_led_matrix?id=led-matrix-effects
-// #if defined(LED_MATRIX_KEYPRESSES) || defined(LED_MATRIX_KEYRELEASES)
 #    define LED_MATRIX_KEYPRESSES
 #    define LED_MATRIX_KEYRELEASES
 #endif

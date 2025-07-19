@@ -1,12 +1,11 @@
 # Lemokey X5
 
-![Lemokey X5]()
-
-A customizable 75% keyboard.
+![Lemokey X5](https://cdn.shopify.com/s/files/1/0059/0630/1017/files/X5-1.jpg?v=1717127007
+A customizable 96% keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Lemokey X5
-* Hardware Availability: [Keychron](https://www.keychron.com)
+* Hardware Availability: [Keychron](https://www.keychron.com/products/lemokey-x5-qmk-via-wired-mechanical-keyboard)
 
 Make example for this keyboard (after setting up your build environment):
 
