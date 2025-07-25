@@ -16,22 +16,29 @@
 
 #pragma once
 
-#include_next <mcuconf.h>
+/* Indication led */
+#define LED_MAC_OS_PIN A4
+#define LED_WIN_OS_PIN A5
+#define LED_OS_PIN_ON_STATE 1
 
-#undef STM32_HSECLK
-#define STM32_HSECLK 16000000U
+#ifdef LED_MATRIX_ENABLE
+/* RGB Matrix Driver Configuration */
+#    define DRIVER_COUNT 1
+#    define DRIVER_ADDR_1 0b1110100
 
-#undef STM32_PLLM_VALUE
-#define STM32_PLLM_VALUE 8
-#undef STM32_PLLN_VALUE
-#define STM32_PLLN_VALUE 168
-#undef STM32_PLLP_VALUE
-#define STM32_PLLP_VALUE 4
-#undef STM32_PLLQ_VALUE
-#define STM32_PLLQ_VALUE 7
+/* RGB Matrix Configuration */
+#    define LED_MATRIX_LED_COUNT 103
 
-#undef STM32_I2C_USE_I2C1
-#define STM32_I2C_USE_I2C1 TRUE
+/* Use first 7 channels of LED driver */
+#    define PHASE_CHANNEL MSKPHASE_7CHANNEL
 
-#undef STM32_SPI_USE_SPI1
-#define STM32_SPI_USE_SPI1 TRUE
+/* Set LED driver current */
+#    define CKLED2001_CURRENT_TUNE \
+        { 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50 }
+
+/* turn off effects when suspended */
+#    define LED_DISABLE_WHEN_USB_SUSPENDED
+
+/* Enable Reactive Animation */
+#    define LED_MATRIX_KEYPRESSES
+#endif
