@@ -15,13 +15,15 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "keychron_common.h"
-#include "keychron_ft_common.h"
 
-enum layers {
-    _BASE,
-    _FN,
+enum layers{
+  _BASE,
+  _FN,
 };
+
+#define KC_TASK LGUI(KC_TAB)
+#define KC_FILE LGUI(KC_E)
+#define KC_TANA LGUI(KC_C)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -34,27 +36,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,  KC_LWIN,  KC_LALT,                                KC_SPC,                                 KC_RALT,  MO(_FN),  KC_APP,   KC_RCTL,   KC_LEFT,  KC_DOWN,  KC_RGHT,   KC_P0,              KC_PDOT         ),
 
     [_FN] = LAYOUT_104_ansi(
-        _______,            KC_BRID,  KC_BRIU,  KC_TASK,  KC_FLXP,  BL_DOWN,  BL_UP,    KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,   KC_PSCR,  KC_CRTA,  BL_STEP,
+        _______,            KC_BRID,  KC_BRIU,  KC_TASK,  KC_FILE,  BL_DOWN,  BL_UP,    KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,   KC_PSCR,  KC_TANA,  BL_STEP,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,   _______,  _______,  _______,   _______,  _______,  _______,  _______,
         BL_TOGG,  BL_STEP,  BL_UP,    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,   _______,  _______,  _______,   _______,  _______,  _______,  _______,
         _______,  _______,  BL_DOWN,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,                                  _______,  _______,  _______,
         _______,            _______,  _______,  _______,  _______,  _______,  NK_TOGG,  _______,  _______,  _______,  _______,            _______,             _______,             _______,  _______,  _______,  _______,
         _______,  GU_TOGG,  _______,                                _______,                                _______,  _______,  _______,  _______,   _______,  _______,  _______,   _______,            _______         ),
 };
-
-// clang-format on
-
-void housekeeping_task_user(void) {
-    housekeeping_task_keychron();
-    housekeeping_task_keychron_ft();
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_keychron(keycode, record)) {
-        return false;
-    }
-    if (!process_record_keychron_ft(keycode, record)) {
-        return false;
-    }
-    return true;
-}

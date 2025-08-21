@@ -1,20 +1,26 @@
 # Lemokey X3
 
-![Lemokey X3]()
+![Lemokey X3]https://cdn.shopify.com/s/files/1/0059/0630/1017/files/Lemokey-X3-3.jpg)
 
-A customizable 80% TKL keyboard.
+A customizable 100% full size keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
 * Hardware Supported: Lemokey X3
-* Hardware Availability: [Keychron](https://www.keychron.com)
+* Hardware Availability: [Keychron](https://www.keychron.com/products/lemokey-x3-qmk-via-wired-mechanical-keyboard)
 
 Make example for this keyboard (after setting up your build environment):
 
-    make keychron/x3/ansi/red:default
+    make keychron/x3/ansi/red:keychron
+    make keychron/x3/ansi/rgb:keychron
+    make keychron/x3/iso/red:keychron
+    make keychron/x3/iso/rgb:keychron
 
 Flashing example for this keyboard:
 
-    make keychron/x3/ansi/red:default:flash
+    make keychron/x3/ansi/red:keychron:flash
+    make keychron/x3/ansi/rgb:keychron:flash
+    make keychron/x3/iso/red:keychron:flash
+    make keychron/x3/iso/rgb:keychron:flash
 
 ## bootloader
 

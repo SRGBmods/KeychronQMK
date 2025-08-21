@@ -14,26 +14,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "quantum.h"
+#pragma once
 
-void eeconfig_init_kb(void) {
-    keymap_config.raw  = eeconfig_read_keymap();
-    keymap_config.nkro = 1;
-    eeconfig_update_keymap(keymap_config.raw);
+/* Winlock indicator */
+#define LED_WIN_LOCK_PIN A7
+#define LED_WIN_LOCK_PIN_ON_STATE 1
 
-    eeconfig_init_user();
-}
+#ifdef RGB_MATRIX_ENABLE
+/* RGB Matrix Driver Configuration */
+#    define DRIVER_COUNT 2
+#    define DRIVER_ADDR_1 0b1110111
+#    define DRIVER_ADDR_2 0b1110100 
 
-void keyboard_post_init_kb(void) {
-    setPinOutputPushPull(LED_WIN_LOCK_PIN);
-    keyboard_post_init_user();
-}
+/* RGB Matrix Configuration */
+#    define LED_MATRIX_LED_COUNT (105 + 12)
 
-void housekeeping_task_kb() {
-    writePin(LED_WIN_LOCK_PIN, keymap_config.no_gui ? LED_WIN_LOCK_PIN_ON_STATE : !LED_WIN_LOCK_PIN_ON_STATE);
-}
+#    define CKLED2001_CURRENT_TUNE \
+    { 0x2C, 0x2C, 0x2C, 0x2C, 0x2C, 0x2C, 0x2C, 0x2C, 0x2C, 0x2C, 0x2C, 0x2C }
 
-void suspend_power_down_kb(void) {
-    writePin(LED_WIN_LOCK_PIN, !LED_WIN_LOCK_PIN_ON_STATE);
-    suspend_power_down_user();
-}
+/* turn off effects when suspended */
+#    define RGB_DISABLE_WHEN_USB_SUSPENDED
+
+#    define LED_MATRIX_KEYPRESSES
+#    define LED_MATRIX_KEYRELEASES
+#endif

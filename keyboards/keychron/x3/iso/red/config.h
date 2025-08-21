@@ -26,7 +26,7 @@
 #    define DRIVER_ADDR_1 0b1110100
 
 /* RGB Matrix Configuration */
-#    define LED_MATRIX_LED_COUNT (104 + 12)
+#    define LED_MATRIX_LED_COUNT (105 + 12)
 
 /* Scan phase of led driver set as MSKPHASE_9CHANNEL(defined as 0x03 in CKLED2001.h) */
 #    define PHASE_CHANNEL MSKPHASE_9CHANNEL
