@@ -32,7 +32,7 @@
 #    define HC164_MR D2
 #endif
 
-#define ADC_GRP_NUM_CHANNELS 6
+#define ADC_GRP_NUM_CHANNELS MATRIX_ROWS
 #define ADC_GRP_BUF_DEPTH 1
 #define UNUSED_DEPTH 0
 
@@ -66,24 +66,38 @@ ADCConversionGroup adcgrpcfg = {
     adcerrorcallback,
     0,                                          /* CR1 */
     ADC_CR2_SWSTART,                            /* CR2 */
-    ADC_SMPR1_SMP_AN10(ADC_SAMPLE_56)  |
-    ADC_SMPR1_SMP_AN11(ADC_SAMPLE_56)  |
-    ADC_SMPR1_SMP_AN12(ADC_SAMPLE_56)  |
-    ADC_SMPR1_SMP_AN13(ADC_SAMPLE_56),          /* SMPR1*/
-    ADC_SMPR2_SMP_AN0(ADC_SAMPLE_56)   |
-    ADC_SMPR2_SMP_AN1(ADC_SAMPLE_56),           /* SMPR2*/
+    0,                                          /* SMPR1 */
+    0,                                          /* SMPR2 */
     0,                                          /* HTR */
     0,                                          /* LTR */
     0,                                          /* SQR1 */
     0,                                          /* SQR2 */
-    ADC_SQR3_SQ1_N(ADC_CHANNEL_IN10)    |
-    ADC_SQR3_SQ2_N(ADC_CHANNEL_IN11)    |
-    ADC_SQR3_SQ3_N(ADC_CHANNEL_IN12)    |
-    ADC_SQR3_SQ4_N(ADC_CHANNEL_IN13)    |
-    ADC_SQR3_SQ5_N(ADC_CHANNEL_IN0)     |
-    ADC_SQR3_SQ6_N(ADC_CHANNEL_IN1)             /* SQR3 */
+    0                                           /* SQR3 */
 };
 // clang-format on
+
+uint8_t pinToAdcChn(pin_t pin) {
+    switch (pin) {
+        case A0:  return ADC_CHANNEL_IN0;
+        case A1:  return ADC_CHANNEL_IN1;
+        case A2:  return ADC_CHANNEL_IN2;
+        case A3:  return ADC_CHANNEL_IN3;
+        case A4:  return ADC_CHANNEL_IN4;
+        case A5:  return ADC_CHANNEL_IN5;
+        case A6:  return ADC_CHANNEL_IN6;
+        case A7:  return ADC_CHANNEL_IN7;
+        case B0:  return ADC_CHANNEL_IN8;
+        case B1:  return ADC_CHANNEL_IN9;
+        case C0:  return ADC_CHANNEL_IN10;
+        case C1:  return ADC_CHANNEL_IN11;
+        case C2:  return ADC_CHANNEL_IN12;
+        case C3:  return ADC_CHANNEL_IN13;
+        case C4:  return ADC_CHANNEL_IN14;
+        case C5:  return ADC_CHANNEL_IN15;
+    }
+
+    return 0xFF;
+}
 
 static inline void shifter_delay(uint16_t n) {
     while (n-- > 0) {
@@ -196,6 +210,11 @@ void matrix_read_rows_on_col(uint8_t current_col, matrix_row_t row_shifter) {
 }
 
 void matrix_init_custom(void) {
+    uint32_t smpr[2] = {0, 0};
+    uint32_t sqr[3] = {0, 0, 0};
+    uint8_t chn;
+    uint8_t chn_cnt = 0;
+
 #ifdef ANALOG_MATRIX_POWER_PIN
    setPinOutput(ANALOG_MATRIX_POWER_PIN);
    writePin(ANALOG_MATRIX_POWER_PIN, ANALOG_MATRIX_POWER_ENABLE_LEVEL);
@@ -218,7 +237,25 @@ void matrix_init_custom(void) {
             palSetLineMode(row_pins[x], PAL_MODE_INPUT_ANALOG);
             palWriteLine(row_pins[x], 0);
         }
+
+        chn = pinToAdcChn(row_pins[x]);
+        if (chn < 0xFF) {
+            if (chn > 9 )
+                smpr[0] |= ADC_SAMPLE_56 << ((chn-10) * 3);
+            else
+                smpr[1] |= ADC_SAMPLE_56 << (chn * 3);
+
+            sqr[chn_cnt/6] |= chn << ((chn_cnt % 6) * 5);
+            chn_cnt++;
+        }
     }
+
+    adcgrpcfg.smpr1 = smpr[0];
+    adcgrpcfg.smpr2 = smpr[1];
+
+    adcgrpcfg.sqr3 = sqr[0];
+    adcgrpcfg.sqr2 = sqr[1];
+    adcgrpcfg.sqr1 = sqr[2];
 
     unselect_cols();
     adcStart(&ADCD1, NULL);

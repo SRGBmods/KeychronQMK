@@ -84,6 +84,7 @@ bool lpm_set(pm_t mode) {
 }
 
 void enter_power_mode(pm_t mode) {
+    enter_power_mode_kb(mode);
 #if STM32_HSE_ENABLED
     /* Switch to HSI */
     RCC->CFGR = (RCC->CFGR & (~STM32_SW_MASK)) | STM32_SW_HSI;

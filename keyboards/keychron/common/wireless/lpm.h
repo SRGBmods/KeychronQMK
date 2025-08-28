@@ -39,4 +39,5 @@ bool usb_power_connected(void);
 bool lpm_is_kb_idle(void);
 void matrix_lpm(void);
 void enter_power_mode(pm_t mode);
+void enter_power_mode_kb(pm_t mode);
 void lpm_task(void);

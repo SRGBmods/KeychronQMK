@@ -95,8 +95,12 @@ static inline bool lpm_any_matrix_action(void) {
 #endif
 }
 
+__attribute__((weak)) void enter_power_mode_kb(pm_t mode) {}
+
 /* Implement of entering low power mode and wakeup varies per mcu or platform */
-__attribute__((weak)) void enter_power_mode(pm_t mode) {}
+__attribute__((weak)) void enter_power_mode(pm_t mode) {
+    enter_power_mode_kb(mode);
+}
 
 __attribute__((weak)) bool usb_power_connected(void) {
 #ifdef USB_POWER_SENSE_PIN
