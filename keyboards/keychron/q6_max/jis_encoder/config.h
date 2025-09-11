@@ -19,7 +19,7 @@
 #ifdef RGB_MATRIX_ENABLE
 /* RGB Matrix driver configuration */
 #    define DRIVER_COUNT 2
-#    define RGB_MATRIX_LED_COUNT 109
+#    define RGB_MATRIX_LED_COUNT 113
 #    define DRIVER_CS_PINS \
         { B8, B9 }
 
@@ -36,10 +36,10 @@
 #    define RGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL 32
 
 /* Indications */
-#    define NUM_LOCK_INDEX 36
-#    define CAPS_LOCK_INDEX 59
+#    define NUM_LOCK_INDEX 39
+#    define CAPS_LOCK_INDEX 64
 #    define LOW_BAT_IND_INDEX \
-        { 99 }
+        { 102 }
 
 #    define RGB_MATRIX_KEYPRESSES
 #    define RGB_MATRIX_FRAMEBUFFER_EFFECTS
