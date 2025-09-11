@@ -24,6 +24,10 @@ ifeq ($(strip $(MCU)), STM32F401)
 SRC += $(WIRELESS_DIR)/lpm_stm32f401.c
 endif
 
+ifeq ($(strip $(MCU)), STM32L432)
+SRC += $(WIRELESS_DIR)/lpm_stm32l432.c
+endif
+
 ifeq ($(strip $(MCU)), WB32F3G71)
 SRC += $(WIRELESS_DIR)/lpm_wb32f3g71.c
 endif

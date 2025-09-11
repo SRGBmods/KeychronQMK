@@ -67,9 +67,9 @@
 /* Factory test keys */
 #define FN_KEY_1 MO(2)
 #define BL_CYCLE_KEY KC_C
-#define FN_BL_CYCLE_KEY RGB_HUD
+#define FN_BL_CYCLE_KEY UG_HUED
 #define BL_TRIG_KEY KC_L
 #define FN_BL_TRIG_KEY KC_PGUP
-#define FN_Z_KEY RGB_RMOD
+#define FN_Z_KEY UG_PREV
 
 #define MATRIX_IO_DELAY 10

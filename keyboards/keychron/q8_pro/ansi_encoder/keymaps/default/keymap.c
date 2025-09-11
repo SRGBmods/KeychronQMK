@@ -41,17 +41,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LWIN,  KC_LALT,           KC_SPC,           MO(WIN_FN1), MO(FN2),          KC_SPC,            KC_RALT,             KC_LEFT, KC_DOWN,  KC_RGHT),
 
     [MAC_FN1] = LAYOUT_69_ansi(
-        KC_GRV,  KC_BRID,  KC_BRIU,  KC_MCTL, KC_LPAD, RGB_VAD, RGB_VAI,     KC_MPRV,  KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,           RGB_TOG,
+        KC_GRV,  KC_BRID,  KC_BRIU,  KC_MCTL, KC_LPAD, UG_VALD, UG_VALU,     KC_MPRV,  KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,           UG_TOGG,
         _______, BT_HST1,  BT_HST2,  BT_HST3, _______, _______, _______,     _______,  _______, _______, _______,  _______,  _______,  _______,           _______,
-        RGB_TOG, RGB_MOD,  RGB_VAI,  RGB_HUI, RGB_SAI, RGB_SPI,              _______,  _______, _______, _______,  _______,  _______,  _______,           _______,
-        _______,           RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD,     _______,  NK_TOGG, _______, _______,  _______,  _______,  _______, _______,
+        UG_TOGG, UG_NEXT,  UG_VALU,  UG_HUEU, UG_SATU, UG_SPDU,              _______,  _______, _______, _______,  _______,  _______,  _______,           _______,
+        _______,           UG_PREV,  UG_VALD, UG_HUED, UG_SATD, UG_SPDD,     _______,  NK_TOGG, _______, _______,  _______,  _______,  _______, _______,
         _______, _______,  _______,           _______,          _______,     _______,           _______,           _______,            _______, _______,  _______),
 
     [WIN_FN1] = LAYOUT_69_ansi(
-        KC_GRV,  KC_BRID,  KC_BRIU,  KC_TASK, KC_FILE, RGB_VAD, RGB_VAI,     KC_MPRV,  KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,           RGB_TOG,
+        KC_GRV,  KC_BRID,  KC_BRIU,  KC_TASK, KC_FILE, UG_VALD, UG_VALU,     KC_MPRV,  KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,           UG_TOGG,
         _______, BT_HST1,  BT_HST2,  BT_HST3, _______, _______, _______,     _______,  _______, _______, _______,  _______,  _______,  _______,           _______,
-        RGB_TOG, RGB_MOD,  RGB_VAI,  RGB_HUI, RGB_SAI, RGB_SPI,              _______,  _______, _______, _______,  _______,  _______,  _______,           _______,
-        _______,           RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD,     _______,  NK_TOGG, _______, _______,  _______,  _______,  _______, _______,
+        UG_TOGG, UG_NEXT,  UG_VALU,  UG_HUEU, UG_SATU, UG_SPDU,              _______,  _______, _______, _______,  _______,  _______,  _______,           _______,
+        _______,           UG_PREV,  UG_VALD, UG_HUED, UG_SATD, UG_SPDD,     _______,  NK_TOGG, _______, _______,  _______,  _______,  _______, _______,
         _______, _______,  _______,           _______,          _______,     _______,           _______,           _______,            _______, _______,  _______),
 
     [FN2] = LAYOUT_69_ansi(
@@ -66,8 +66,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [MAC_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [WIN_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
-    [MAC_FN1]  = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
-    [WIN_FN1]  = {ENCODER_CCW_CW(RGB_VAD, RGB_VAI)},
+    [MAC_FN1]  = {ENCODER_CCW_CW(UG_VALD, UG_VALU)},
+    [WIN_FN1]  = {ENCODER_CCW_CW(UG_VALD, UG_VALU)},
     [FN2]      = {ENCODER_CCW_CW(_______, _______)},
 };
 #endif // ENCODER_MAP_ENABLE

@@ -1,0 +1,34 @@
+{
+    "keyboard_name": "Keychron K4 Version 3",
+    "manufacturer": "Keychron",
+    "url": "https://github.com/Keychron",
+    "maintainer": "Keychron",
+    "processor": "WB32F3G71",
+    "bootloader": "wb32-dfu",
+    "usb": {
+        "vid": "0x3434"
+    },
+    "features": {
+        "bootmagic": true,
+        "extrakey": true,
+        "mousekey": true,
+        "dip_switch": true,
+        "nkro": true,
+        "raw": true,
+        "send_string": true
+    },
+    "diode_direction": "ROW2COL",
+    "dip_switch" :{
+        "pins": ["B12"]
+    },
+    "dynamic_keymap": {
+        "layer_count": 4
+    },
+    "eeprom": {
+        "driver": "i2c"
+    },
+    "build": {
+        "debounce_type": "sym_eager_pk"
+    },
+    "debounce": 50
+}

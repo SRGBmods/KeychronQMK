@@ -20,12 +20,27 @@
 #    define RUN_MODE_PROCESS_TIME 1000
 #endif
 
+#if defined(QMK_MCU_SERIES_STM32L4XX)
+typedef enum {
+    PM_RUN,
+    PM_LOW_POWER_RUN,
+    PM_SLEEP,
+    PM_LOW_POWER_SLEEP,
+    PM_STOP0,
+    PM_STOP1,
+    PM_STOP2,
+    PM_STANDBY_WITH_RAM,
+    PM_STANDBY,
+    PM_SHUTDOWN,
+} pm_t;
+#else
 typedef enum {
     PM_RUN,
     PM_SLEEP,
     PM_STOP,
     PM_STANDBY,
 } pm_t;
+#endif
 
 void lpm_init(void);
 void lpm_timer_reset(void);

@@ -74,7 +74,7 @@
 #define FN_BL_TRIG_KEY KC_PMNS
 
 #define BL_CYCLE_KEY KC_MPLY
-#define FN_Z_KEY RGB_SAD
-#define FN_J_KEY RGB_HUD
+#define FN_Z_KEY UG_SATD
+#define FN_J_KEY UG_HUED
 
 #define MATRIX_IO_DELAY 10

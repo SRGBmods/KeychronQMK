@@ -152,6 +152,20 @@ const rgb_matrix_driver_t rgb_matrix_driver = {
     .get_load_ratio = snled27351_get_load_ratio
 #endif
 };
+#elif defined(RGB_MATRIX_SN3734_SPI)
+const rgb_matrix_driver_t rgb_matrix_driver = {
+    .init = sn3734_init_drivers,
+    .flush = sn3734_flush,
+    .set_color = sn3734_set_color,
+    .set_color_all = sn3734_set_color_all,
+#        if defined(RGB_MATRIX_DRIVER_SHUTDOWN_ENABLE)
+    .shutdown = sn3734_shutdown,
+    .exit_shutdown = sn3734_exit_shutdown,
+#        endif
+#ifdef RGB_MATRIX_DRIVER_LOAD_ENABLE
+    .get_load_ratio = sn3734_get_load_ratio
+#endif
+};
 #elif defined(RGB_MATRIX_AW20216S)
 const rgb_matrix_driver_t rgb_matrix_driver = {
     .init          = aw20216s_init_drivers,
