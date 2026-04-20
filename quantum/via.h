@@ -73,7 +73,27 @@ enum via_command_id {
     id_dynamic_keymap_set_buffer            = 0x13,
     id_dynamic_keymap_get_encoder           = 0x14,
     id_dynamic_keymap_set_encoder           = 0x15,
+    id_signalrgb_qmk_version                = 0x21,
+    id_signalrgb_protocol_version           = 0x22,
+    id_signalrgb_unique_identifier          = 0x23,
+    id_signalrgb_stream_leds                = 0x24,
+    id_signalrgb_effect_enable              = 0x25,
+    id_signalrgb_effect_disable             = 0x26,
+    id_signalrgb_total_leds                 = 0x27,
+    id_signalrgb_firmware_type              = 0x28,
     id_unhandled                            = 0xFF,
+};
+
+enum signalrgb_responses {
+    PROTOCOL_VERSION_BYTE_1 = 1,
+    PROTOCOL_VERSION_BYTE_2 = 0,
+    PROTOCOL_VERSION_BYTE_3 = 6,
+    DEVICE_UNIQUE_IDENTIFIER_BYTE_1 = 0,
+    DEVICE_UNIQUE_IDENTIFIER_BYTE_2 = 0,
+    DEVICE_UNIQUE_IDENTIFIER_BYTE_3 = 0,
+    FIRMWARE_TYPE_BYTE = 2, 
+    DEVICE_ERROR_LED_BOUNDS = 253,
+    DEVICE_ERROR_LED_COUNT = 254
 };
 
 enum via_keyboard_value_id {
@@ -139,6 +159,16 @@ void via_init(void);
 uint32_t via_get_layout_options(void);
 void     via_set_layout_options(uint32_t value);
 void     via_set_layout_options_kb(uint32_t value);
+
+//Used to handle SignalRGB Compatibility
+void get_qmk_version(void);
+void get_signalrgb_protocol_version(void);
+void get_unique_identifier(void);
+void led_streaming(uint8_t *data);
+void signalrgb_mode_enable(void);
+void signalrgb_mode_disable(void);
+void signalrgb_total_leds(void);
+void signalrgb_firmware_type(void);
 
 #if VIA_EEPROM_CUSTOM_CONFIG_SIZE > 0
 uint32_t via_read_custom_config(void *buf, uint32_t offset, uint32_t length);
