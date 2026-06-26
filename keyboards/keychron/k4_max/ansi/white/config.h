@@ -30,9 +30,7 @@
 #    define LED_MATRIX_LED_COUNT 100
 
 /* Indications */
-#    define DIM_CAPS_LOCK
 #    define CAPS_LOCK_INDEX 54
-#    define DIM_NUM_LOCK
 #    define NUM_LOCK_INDEX 32
 #    define LOW_BAT_IND_INDEX \
         { 91 }
