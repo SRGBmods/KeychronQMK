@@ -1,4 +1,4 @@
-/* Copyright 2025 @ Keychron (https://www.keychron.com)
+/* Copyright 2026 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,10 @@
 
 #pragma once
 
-#ifdef RGB_MATRIX_ENABLE
-/* RGB Matrix Configuration */
-#    define RGB_MATRIX_LED_COUNT 105
+#define HAL_USE_SPI TRUE
 
-/* RGB Matrix Driver Configuration */
-#    define SNLED27351_SELECT_PINS \
-        { A8, C9 }
-
-/* Set LED driver current */
-#define SNLED27351_CURRENT_TUNE \
-    { 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70 }
-
+#if defined(ENCODER_ENABLE)
+#    define PAL_USE_CALLBACKS TRUE
 #endif
+
+#include_next <halconf.h>

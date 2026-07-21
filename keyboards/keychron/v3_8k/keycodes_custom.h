@@ -1,4 +1,4 @@
-/* Copyright 2025 @ Keychron (https://www.keychron.com)
+/* Copyright 2026 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,28 @@
 
 #pragma once
 
-#ifdef RGB_MATRIX_ENABLE
-/* RGB Matrix Configuration */
-#    define RGB_MATRIX_LED_COUNT 105
+#include "keycodes.h"
 
-/* RGB Matrix Driver Configuration */
-#    define SNLED27351_SELECT_PINS \
-        { A8, C9 }
+enum custom_keycodes {
+    KC_MAC_MISSION_CONTROL = QK_KB_0,
+    KC_MAC_LAUCHPAD,
+    KC_LOPTN,
+    KC_ROPTN,
+    KC_LCMMD,
+    KC_RCMMD,
+    KC_MAC_SIRI,
+    KC_WIN_TASK_VIEW,
+    KC_WIN_FILE_EXPLORER,
+    KC_MAC_SCREEN_SHOT,
+    KC_WIN_CORTANA,
+    OS_TOGGL,
+    NEW_SAFE_RANGE,
+};
 
-/* Set LED driver current */
-#define SNLED27351_CURRENT_TUNE \
-    { 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70 }
-
-#endif
+#define KC_MCTRL KC_MAC_MISSION_CONTROL
+#define KC_LNPAD KC_MAC_LAUCHPAD
+#define KC_SIRI KC_MAC_SIRI
+#define KC_TASK KC_WIN_TASK_VIEW
+#define KC_FILE KC_WIN_FILE_EXPLORER
+#define KC_SNAP KC_MAC_SCREEN_SHOT
+#define KC_CTANA KC_WIN_CORTANA

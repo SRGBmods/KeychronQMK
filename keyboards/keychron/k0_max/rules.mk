@@ -5,4 +5,4 @@ include keyboards/keychron/common/keychron_common.mk
 
 VPATH += $(TOP_DIR)/keyboards/keychron
 
-SRC += led_config.c
+SRC += led_config.c ./common/matrix.c

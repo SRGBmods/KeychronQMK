@@ -25,7 +25,6 @@
 #    define RGB_MATRIX_LED_COUNT 108
 #    define SNLED27351_SELECT_PINS \
         { A4, A6 }
-#    define RGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL 48
 
 /* Indications */
 #    define CAPS_LOCK_INDEX 61

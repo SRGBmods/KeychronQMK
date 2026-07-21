@@ -1,4 +1,4 @@
-/* Copyright 2025 @ Keychron (https://www.keychron.com)
+/* Copyright 2026 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,18 +14,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include "keychron.h"
 
-#ifdef RGB_MATRIX_ENABLE
-/* RGB Matrix Configuration */
-#    define RGB_MATRIX_LED_COUNT 105
+#ifdef DIP_SWITCH_ENABLE
+bool dip_switch_update_kb(uint8_t index, bool active) {
+    if (!dip_switch_update_user(index, active)) {
+        return false;
+    }
+    if (index == 0) {
+        default_layer_set(1UL << (active ? 0 : 2));
+    }
+    return true;
+}
+#endif // DIP_SWITCH_ENABLE
 
-/* RGB Matrix Driver Configuration */
-#    define SNLED27351_SELECT_PINS \
-        { A8, C9 }
-
-/* Set LED driver current */
-#define SNLED27351_CURRENT_TUNE \
-    { 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70 }
-
-#endif
+void keyboard_post_init_kb(void) {
+    keychron_common_init();
+    keyboard_post_init_user();
+}

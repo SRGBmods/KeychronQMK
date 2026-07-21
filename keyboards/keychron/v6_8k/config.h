@@ -18,6 +18,9 @@
 
 #include "eeconfig_kb.h"
 
+/* Encoder Configuration */
+#define ENCODER_DEFAULT_POS 0x3
+
 /* SNLED27351 Driver Configuration */
 #ifdef RGB_MATRIX_ENABLE
 #    define SPI_DRIVER SPID1

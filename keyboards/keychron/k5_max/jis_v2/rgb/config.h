@@ -33,7 +33,6 @@
 #    define SNLED27351_CURRENT_TUNE \
         { 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12, 0x12 }
 
-#    define RGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL 48
 
 /* Indications */
 #    define LOW_BAT_IND_INDEX \

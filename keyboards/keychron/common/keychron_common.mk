@@ -25,10 +25,15 @@ endif
 include $(KEYCHRON_COMMON_DIR)/language/language.mk
 include $(KEYCHRON_COMMON_DIR)/snap_click/snap_click.mk
 
-ifeq ($(strip $(KEYCHRON_RGB_ENABLE)), yes)
 ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
+OPT_DEFS += -DRGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL=48
+ifeq ($(strip $(KEYCHRON_RGB_ENABLE)), yes)
 include $(KEYCHRON_COMMON_DIR)/rgb/rgb.mk
 endif
+endif
+
+ifeq ($(strip $(LED_MATRIX_ENABLE)), yes)
+OPT_DEFS += -DLED_MATRIX_BRIGHTNESS_TURN_OFF_VAL=48
 endif
 
 ifeq ($(strip $(USB_REPORT_INTERVAL_ENABLE)), yes)

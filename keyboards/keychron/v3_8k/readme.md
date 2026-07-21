@@ -1,25 +1,25 @@
-# Keychron V6 8K
+# Keychron V3 8k
 
-![Keychron V6 8K](https://www.keychron.com/cdn/shop/files/Keychron_V6_8K_Color_Version_Black_f5eedd95-686a-4a9c-87c4-a7ba71dcebd1.jpg)
+![Keychron V3 8K](https://www.keychron.com/cdn/shop/files/Keychron-V3-8K-QMK-Wired-Custom-Mechanical-Keyboard-black.jpg)
 
 A customizable 80% keyboard.
 
 * Keyboard Maintainer: [Keychron](https://github.com/keychron)
-* Hardware Supported: Keychron V6 8K
-* Hardware Availability: [Keychron](https://www.keychron.com/products/keychron-v6-8k-qmk-wired-custom-mechanical-keyboard)
+* Hardware Supported: Keychron V3 8k
+* Hardware Availability: [Keychron](https://www.keychron.com/products/keychron-v3-8k-qmk-wired-custom-mechanical-keyboard)
 
 ## Option A: Build And Flash Firmware
 
 Make example for this keyboard (after setting up your build environment):
 
-    make keychron/v6_8k/ansi_encoder:keychron
-    make keychron/v6_8k/iso_encoder:keychron
-    
+    make keychron/v3_8k/ansi_encoder:keychron
+    make keychron/v3_8k/iso_encoder:keychron
+
 Flashing example for this keyboard:
 
-    make keychron/v6_8k/ansi_encoder:keychron:flash
-    make keychron/v6_8k/ansi_encoder:keychron:flash
-    
+    make keychron/v3_8k/ansi_encoder:keychron:flash
+    make keychron/v3_8k/iso_encoder:keychron:flash
+
 **Reset Key**: Hold down the key located at *K00*, commonly programmed as *Esc* while plugging in the keyboard.
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).

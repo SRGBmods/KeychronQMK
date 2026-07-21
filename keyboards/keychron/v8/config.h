@@ -33,7 +33,6 @@
 /* Set LED driver current */
 #define SNLED27351_CURRENT_TUNE \
     { 0xC4, 0xC4, 0x60, 0xC4, 0xC4, 0x60, 0xC4, 0xC4, 0x60, 0xC4, 0xC4, 0x60 }
-#define RGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL 32
 
 #define CUSTOM_KEYCODES_ENABLE
 

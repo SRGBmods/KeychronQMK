@@ -1,4 +1,4 @@
-/* Copyright 2025 @ Keychron (https://www.keychron.com)
+/* Copyright 2026 @ Keychron (https://www.keychron.com)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,16 +16,7 @@
 
 #pragma once
 
-#ifdef RGB_MATRIX_ENABLE
-/* RGB Matrix Configuration */
-#    define RGB_MATRIX_LED_COUNT 105
+#include_next <mcuconf.h>
 
-/* RGB Matrix Driver Configuration */
-#    define SNLED27351_SELECT_PINS \
-        { A8, C9 }
-
-/* Set LED driver current */
-#define SNLED27351_CURRENT_TUNE \
-    { 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70, 0x70 }
-
-#endif
+#undef AT32_SPI_USE_SPI1
+#define AT32_SPI_USE_SPI1 TRUE

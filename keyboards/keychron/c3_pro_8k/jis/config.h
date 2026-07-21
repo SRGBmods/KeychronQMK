@@ -27,7 +27,6 @@
 /* Set LED driver current */
 #    define SNLED27351_CURRENT_TUNE \
         { 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28 }
-#    define RGB_MATRIX_BRIGHTNESS_TURN_OFF_VAL 32
 
 /* Indications */
 #    define WINLOCK_LED_LIST \
