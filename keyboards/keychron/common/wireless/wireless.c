@@ -530,6 +530,7 @@ void wireless_send_xinput(report_xinput_t *report) {
 void wireless_send_raw_hid(uint8_t *data, uint8_t len) {
 #ifdef RAW_ENABLE
     if (battery_is_critical_low()) return;
+    if (wireless_state == WT_PARING) return;
 
     if (wireless_state == WT_CONNECTED) {
         if (wireless_transport.send_raw_hid) {
